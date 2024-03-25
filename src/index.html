@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World!</title>
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="./css/output.css" />
+</head>
+
+<body class="grid grid-cols-1 md:grid-cols-2 h-screen">
+  <section class="flex bg-slate-50 h-full  overflow-y-auto md:overflow-hidden">
+    <div class="w-full flex flex-col justify-between p-8 bg-white h-full">
+      <nav class="flex flex-col md:flex-row items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <img src="./images/whatsapp.webp" alt="Whatsapp" class="w-10">
+          <span class="font-bold text-lg">Whatsapp Sender</span>
+        </a>
+        <ul class="flex gap-5 text-sm">
+          <li class="font-medium text-slate-800"><i class="fa-solid fa-message mr-1"></i> Chat</li>
+          <li class="text-slate-700">BOT</li>
+          <li class="text-slate-700">Tutorial</li>
+        </ul>
+      </nav>
+      <main class="space-y-5">
+        <div class="space-y-2">
+          <h2 class="font-bold text-4xl leading-snug">Simple. New Version.<br />Reliable Messaging for Marketing.</h2>
+          <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, molestiae doloremque?
+            Asperiores laboriosam voluptate voluptas dolorem autem corrupti sapiente reprehenderit?</p>
+        </div>
+        <div class="hidden flex items-center gap-5" id="identity-container">
+          <input type="number" id="identity" placeholder="Tulis kode ID anda disini..."
+            class="w-full bg-slate-50 border border-slate-300 px-5 py-4 rounded-2xl text-sm">
+          <button onclick="setIdentity()"
+            class="flex items-center gap-2 px-5 py-4 bg-[#25D366] hover:bg-[#24C861] text-white rounded-2xl text-sm">
+            <i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
+        </div>
+        <div id="loading-container" class="hidden">
+          <lottie-player src="./animation/loading.json" background="transparent" speed="1"
+            style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+        </div>
+        <div id="qrcode-container" class="hidden space-y-3">
+          <img src="./img/qrcode-sample.png" alt="QR Code" id="qrcode" class="w-48 border border-gray-200">
+          <div class="text-xs text-gray-700">Jika terjadi <span class="font-medium text-red-600">"Tidak dapat menautkan
+              perangkat"</span> maka <span class="text-emerald-600">tunggu sampai QR Code</span> berubah.</div>
+        </div>
+      </main>
+      <footer class="flex items-center justify-between">
+        <p class="text-xs text-gray-600">Copyright © 2023 Lerian Febriana, A.Md.Kom</p>
+        <ul class="flex items-center gap-3">
+          <li class="text-xs text-gray-600">
+            <a href="https://instagram.com/kanglerian" target="_blank"><i class="fa-brands fa-instagram"></i>
+              Instagram</a>
+          </li>
+          <li class="text-xs text-gray-600">
+            <a href="https://wa.me/6281286501015" target="_blank"><i class="fa-solid fa-circle-info"></i> Help</a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+  </section>
+  <section id="chat-container" class="relative flex justify-center items-center bg-[#25D366] h-full overflow-hidden">
+    <div class="flex flex-col justify-center items-center h-full">
+      <div class="text-center space-y-3">
+        <i class="fa-brands fa-whatsapp fa-3x text-white"></i>
+        <div id="signal" class="text-white"></div>
+      </div>
+      <div id="url-container" class="flex items-center gap-3">
+        <input type="text" id="url" class="bg-white text-emerald-900 text-sm rounded-xl block w-full px-4 py-2" value="http://localhost:3000">
+        <button type="button" onclick="setPath()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-sm"><i class="fa fa-solid fa-server"></i> Setup</button>
+      </div>
+    </div>
+    <button type="button" onclick="deletePath()" class="absolute top-3 right-3 px-3 py-2 rounded-xl bg-red-500 hover:bg-red-600 border-2 border-white text-white text-[12px]"><i class="fa-solid fa-power-off"></i></button>
+  </section>
+  <script src="./javascript/all.min.js"></script>
+  <script src="./javascript/jquery-3.7.0.min.js"></script>
+  <script src="./javascript/lottie-player.js"></script>
+  <script src="./javascript/axios.min.js"></script>
+  <script src="./javascript/socket.io.min.js"></script>
+  <script src="./javascript/server/socket.js"></script>
+  <script src="./javascript/setting/server.js"></script>
+  <script>
+    socketSetup();
+  </script>
+</body>
+
+</html>
