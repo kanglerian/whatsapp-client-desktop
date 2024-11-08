@@ -16,9 +16,6 @@
           <img src="./images/whatsapp.webp" alt="Whatsapp" class="w-10">
           <span class="font-bold text-lg">Whatsapp Sender</span>
         </a>
-        <ul class="flex gap-5 text-xs">
-          <li class="font-medium text-slate-800"><i class="fa-solid fa-message mr-1"></i> Chat</li>
-        </ul>
       </nav>
       <!-- Message -->
       <main id="message-container" class="hidden">
@@ -166,7 +163,9 @@
       <main id="authentication-container" class="space-y-5">
         <div class="space-y-2">
           <h2 class="font-bold text-4xl leading-snug">Simple. New Version.<br />Reliable Messaging for Marketing.</h2>
-          <p class="text-gray-700 text-sm">The Reliable Messaging for Marketing application is a dependable solution for sending bulk text or media messages with high efficiency. With this tool, businesses can easily manage and deliver messages to their customers, ensuring reliability in every delivery.</p>
+          <p class="text-gray-700 text-sm">The Reliable Messaging for Marketing application is a dependable solution for
+            sending bulk text or media messages with high efficiency. With this tool, businesses can easily manage and
+            deliver messages to their customers, ensuring reliability in every delivery.</p>
         </div>
         <div class="w-full flex items-center gap-5" id="identity-container">
           <input type="number" id="identity" placeholder="Tulis kode ID anda disini..."
@@ -187,11 +186,11 @@
       </main>
       <!-- End Authentication -->
       <footer class="flex items-center justify-between">
-        <a href="https://kanglerian.vercel.app" target="_blank"
-          class="text-xs text-gray-600 hover:text-gray-900">Copyright © 2024 Lerian Febriana, A.Md.Kom</a>
+        <a href="https://kanglerian.github.io" target="_blank"
+          class="text-xs text-gray-600 hover:text-gray-900">Copyright © 2024 Lerian Febriana</a>
         <ul class="flex items-center gap-3">
           <li class="text-xs text-gray-600 hover:text-gray-900">
-            <a href="https://instagram.com/kanglerian" target="_blank"><i class="fa-brands fa-instagram"></i>
+            <a href="https://instagram.com/kanglerian.dev" target="_blank"><i class="fa-brands fa-instagram"></i>
               Instagram</a>
           </li>
           <li class="text-xs text-gray-600 hover:text-gray-900">
@@ -209,7 +208,7 @@
       </div>
       <div id="url-container" class="w-1/2 flex items-center gap-3">
         <div class="w-full relative">
-          <input type="text" id="url" class="w-full bg-white text-emerald-900 text-xs rounded-xl block w-full px-4 py-2"
+          <input type="password" id="url" class="w-full bg-white text-emerald-900 text-xs rounded-xl block px-4 py-2"
             value="http://localhost:3000">
           <button type="button" onclick="changeType()"
             class="absolute top-2 right-2 text-[11px] text-gray-400 hover:text-gray-500"><i
@@ -219,7 +218,8 @@
           class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-xs"><i
             class="fa fa-solid fa-server"></i> Setup</button>
       </div>
-      <div id="sent-percent-container" class="w-5/6 flex flex-col justify-center bg-white px-5 py-3 rounded-3xl border-4 border-emerald-500">
+      <div id="sent-percent-container"
+        class="w-5/6 flex flex-col justify-center bg-white px-5 py-3 rounded-3xl border-4 border-emerald-500">
         <div id="sent-container" class="w-full flex justify-center"></div>
         <div class="w-full hidden" id="percent-container">
           <div class="w-full bg-slate-200 rounded-full">
@@ -278,7 +278,7 @@
       </section>
     </main>
     <button type="button" onclick="deletePath()"
-      class="absolute top-3 right-3 px-3 py-2 rounded-xl bg-red-500 hover:bg-red-600 border-2 border-white text-white text-[12px]"><i
+      class="absolute top-3 right-3 px-3 py-2 rounded-xl bg-red-600 hover:bg-red-700 border-2 border-white text-white text-[12px]"><i
         class="fa-solid fa-power-off"></i></button>
     <p id="logging" class="absolute bottom-1 left-2 text-[11px] text-emerald-100 z-2"></p>
   </section>
@@ -296,7 +296,11 @@
   <script>
     const setIdentity = async () => {
       let identity = document.getElementById('identity').value;
-      await axios.get(`https://database.politekniklp3i-tasikmalaya.ac.id/api/user/info/${identity}`)
+      await axios.get(`https://api.politekniklp3i-tasikmalaya.ac.id/pmb/users/${identity}`, {
+        headers: {
+          'lp3i-api-key': 'aEof9XqcH34k3g6IbJcQLxGY'
+        }
+      })
         .then((response) => {
           if (response.data.name !== "Tidak diketahui") {
             socket.emit('setIdentity', identity);
@@ -306,7 +310,7 @@
           }
         })
         .catch((error) => {
-          console.log(error);
+          alert(error.response.data.message);
         });
     }
 
